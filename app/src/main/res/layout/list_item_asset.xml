@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="asset"
+            type="com.chunchiehliang.openseacollectibles.data.model.asset.Asset" />
+
+        <variable
+            name="listener"
+            type="com.chunchiehliang.openseacollectibles.ui.assets.AssetListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> listener.onClick(asset)}">
+
+        <ImageView
+            android:id="@+id/img_asset_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:imageUrl="@{asset.imageUrl}"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/tv_asset_collection_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/material_margin"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{asset.collection.name}"
+            android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_asset_image"
+            tools:text="Collection" />
+
+        <TextView
+            android:id="@+id/tv_asset_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/material_margin"
+            android:layout_marginTop="@dimen/material_spacing"
+            android:layout_marginBottom="@dimen/material_margin"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{asset.name}"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_asset_collection_name"
+            tools:text="Name" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
