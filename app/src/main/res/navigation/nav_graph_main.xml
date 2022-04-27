@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main.xml"
+    app:startDestination="@id/assetsFragment">
+
+    <fragment
+        android:id="@+id/assetsFragment"
+        android:name="com.chunchiehliang.openseacollectibles.ui.assets.AssetsFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_assets">
+
+        <action
+            android:id="@+id/action_to_asset_details"
+            app:destination="@id/assetDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/assetDetailsFragment"
+        android:name="com.chunchiehliang.openseacollectibles.ui.assetdetails.AssetDetailsFragment"
+        android:label="{collectionName}"
+        tools:layout="@layout/fragment_asset_details">
+
+        <argument
+            android:name="collectionName"
+            app:argType="string" />
+
+        <argument
+            android:name="contractAddress"
+            app:argType="string" />
+
+        <argument
+            android:name="tokenId"
+            app:argType="string" />
+    </fragment>
+</navigation>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">OpenSea Collectibles</string>
+    <string name="no_data">No data</string>
+    <string name="btn_retry">Retry</string>
+    <string name="view_details">View details</string>
+
+    <string name="error_msg_get_assets_failed">Fetching assets failed: %1$s</string>
+</resources>
