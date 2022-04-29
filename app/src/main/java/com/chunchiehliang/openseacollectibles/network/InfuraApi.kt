@@ -1,6 +1,7 @@
 package com.chunchiehliang.openseacollectibles.network
 
 import com.chunchiehliang.openseacollectibles.network.service.EthereumService
+import com.chunchiehliang.openseacollectibles.util.INFURA_PROJECT_ID
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -11,8 +12,6 @@ import org.koin.core.component.KoinComponent
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.*
-
-private const val PROJECT_ID = "788525f234074417b3c91a74485d682f"
 
 object InfuraApi : KoinComponent {
     private const val BASE_URL = "https://mainnet.infura.io/"
@@ -29,7 +28,7 @@ object InfuraApi : KoinComponent {
                 val builder = request.newBuilder()
                 builder.addHeader("Accept", "application/json")
                 val newUrl = request.url.newBuilder()
-                    .addPathSegments("v3/$PROJECT_ID")
+                    .addPathSegments("v3/$INFURA_PROJECT_ID")
                     .build()
                 return@Interceptor chain.proceed(builder.url(newUrl).build())
             })
