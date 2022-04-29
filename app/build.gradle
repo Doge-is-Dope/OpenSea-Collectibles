@@ -19,7 +19,19 @@ android {
     }
 
     buildTypes {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        def OpenSeaApiKey = properties.getProperty('opensea.api.key')
+        def infuraProjectId = properties.getProperty('infura.project.id')
+
+        debug {
+            buildConfigField "String", "OPENSEA_API_KEY", OpenSeaApiKey
+            buildConfigField "String", "INFURA_PROJECT_ID", infuraProjectId
+        }
+
         release {
+            buildConfigField "String", "OPENSEA_API_KEY", OpenSeaApiKey
+            buildConfigField "String", "INFURA_PROJECT_ID", infuraProjectId
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
