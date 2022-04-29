@@ -1,7 +1,7 @@
 package com.chunchiehliang.openseacollectibles.network
 
+import com.chunchiehliang.openseacollectibles.BuildConfig.OPENSEA_API_KEY
 import com.chunchiehliang.openseacollectibles.network.service.AssetService
-import com.chunchiehliang.openseacollectibles.util.OPENSEA_API_KEY
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

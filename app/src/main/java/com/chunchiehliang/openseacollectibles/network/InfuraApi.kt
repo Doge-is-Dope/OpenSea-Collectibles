@@ -1,7 +1,7 @@
 package com.chunchiehliang.openseacollectibles.network
 
+import com.chunchiehliang.openseacollectibles.BuildConfig.INFURA_PROJECT_ID
 import com.chunchiehliang.openseacollectibles.network.service.EthereumService
-import com.chunchiehliang.openseacollectibles.util.INFURA_PROJECT_ID
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
