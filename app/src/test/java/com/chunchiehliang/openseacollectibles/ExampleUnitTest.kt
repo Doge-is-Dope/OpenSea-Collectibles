@@ -3,7 +3,6 @@ package com.chunchiehliang.openseacollectibles
 import com.chunchiehliang.openseacollectibles.util.eth.EthUnit
 import com.chunchiehliang.openseacollectibles.util.eth.decodeQuantity
 import com.chunchiehliang.openseacollectibles.util.eth.fromWei
-import com.chunchiehliang.openseacollectibles.util.eth.toWei
 import org.junit.Test
 
 

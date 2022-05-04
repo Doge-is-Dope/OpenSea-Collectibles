@@ -7,10 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.chunchiehliang.openseacollectibles.data.model.asset.Asset
 import com.chunchiehliang.openseacollectibles.data.model.common.Result
 import com.chunchiehliang.openseacollectibles.data.repository.AssetRepository
-import com.chunchiehliang.openseacollectibles.util.eth.EthUnit
-import com.chunchiehliang.openseacollectibles.util.eth.decodeQuantity
-import com.chunchiehliang.openseacollectibles.util.eth.fromWei
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class AssetDetailsViewModel(private val assetRepo: AssetRepository) : ViewModel() {

@@ -1,6 +1,5 @@
 package com.chunchiehliang.openseacollectibles.network.service
 
-import com.chunchiehliang.openseacollectibles.data.model.common.Result
 import com.chunchiehliang.openseacollectibles.data.model.eth.InfuraBody
 import com.chunchiehliang.openseacollectibles.data.model.eth.InfuraResponse
 import retrofit2.http.Body
