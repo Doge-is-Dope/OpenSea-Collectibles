@@ -3,8 +3,8 @@ package com.chunchiehliang.openseacollectibles.ui.assets
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,9 +20,6 @@ import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import retrofit2.HttpException
-import timber.log.Timber
-import java.io.IOException
 
 
 private const val SPAN_COUNT = 2
@@ -88,27 +85,26 @@ class AssetsFragment : BaseFragment<FragmentAssetsBinding>(FragmentAssetsBinding
 
         // Populate asset data
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                assetsViewModel.assetsFlow.collect { assetAdapter.submitData(it) }
-            }
+            assetsViewModel.assetsFlow
+                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                .collect { assetAdapter.submitData(it) }
         }
 
         // Handle empty data
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                assetAdapter.loadStateFlow
-                    .distinctUntilChangedBy { it.refresh }
-                    .filter { it.refresh is LoadState.NotLoading }
-                    .collect { assetsViewModel.showEmptyDataView(assetAdapter.itemCount < 1) }
-            }
+            assetAdapter.loadStateFlow
+                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                .distinctUntilChangedBy { it.refresh }
+                .filter { it.refresh is LoadState.NotLoading }
+                .collect { assetsViewModel.showEmptyDataView(assetAdapter.itemCount < 1) }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                assetsViewModel.ethBalance.collect { balance ->
+            assetsViewModel.ethBalance
+                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                .collect { balance ->
                     balance?.let { activity?.let { a -> (a as MainActivity).updateTitle("$balance ETH") } }
                 }
-            }
         }
     }
 
