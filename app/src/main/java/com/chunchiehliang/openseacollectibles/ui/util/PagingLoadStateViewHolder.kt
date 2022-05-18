@@ -6,7 +6,6 @@ import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
 import com.chunchiehliang.openseacollectibles.databinding.ListItemPagingFooterBinding
-import timber.log.Timber
 
 class PagingLoadStateViewHolder(
     private val binding: ListItemPagingFooterBinding,

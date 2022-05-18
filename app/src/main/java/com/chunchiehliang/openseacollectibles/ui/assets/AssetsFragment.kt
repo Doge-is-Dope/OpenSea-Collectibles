@@ -39,15 +39,18 @@ class AssetsFragment : BaseFragment<FragmentAssetsBinding>(FragmentAssetsBinding
 
     private fun FragmentAssetsBinding.bindList() {
         val assetAdapter = AssetAdapter(AssetListener { asset ->
-            findNavController().navigate(AssetsFragmentDirections.actionToAssetDetails(
-                collectionName = asset.collection.name,
-                contractAddress = asset.contract.address,
-                tokenId = asset.tokenId))
+            findNavController().navigate(
+                AssetsFragmentDirections.actionToAssetDetails(
+                    collectionName = asset.collection.name,
+                    contractAddress = asset.contract.address,
+                    tokenId = asset.tokenId
+                )
+            )
         })
 
         assetAdapter.addLoadStateListener { loadState ->
             if (loadState.refresh is LoadState.Loading) {
-
+                // Handle loading
             } else {
                 // Handle error
                 val error = when {
@@ -58,9 +61,11 @@ class AssetsFragment : BaseFragment<FragmentAssetsBinding>(FragmentAssetsBinding
                 }
 
                 if (error != null)
-                    showSnackbar(binding.root,
+                    showSnackbar(
+                        binding.root,
                         getString(R.string.error_msg_get_assets_failed, error.error.message),
-                        Snackbar.LENGTH_LONG)
+                        Snackbar.LENGTH_LONG
+                    )
             }
         }
 
@@ -77,8 +82,10 @@ class AssetsFragment : BaseFragment<FragmentAssetsBinding>(FragmentAssetsBinding
                 footer = footerAdapter
             )
             addItemDecoration(
-                GridSpacingItemDecoration(2,
-                    resources.getDimensionPixelSize(R.dimen.material_margin), true)
+                GridSpacingItemDecoration(
+                    2,
+                    resources.getDimensionPixelSize(R.dimen.material_margin), true
+                )
             )
             setHasFixedSize(true)
         }
